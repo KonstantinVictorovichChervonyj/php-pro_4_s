@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    code_length: 6
 
 services:
     # default configuration for services in *this* file
@@ -22,3 +23,17 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Shortener\Interfaces\IUrlEncoder:
+        class: App\Shortener\UrlConverter
+        arguments:
+            $codeLength: '%code_length%'
+
+    App\Shortener\Interfaces\IUrlDecoder:
+        class: App\Shortener\UrlConverter
+
+    App\Shortener\Interfaces\ICodeRepository:
+        class: App\Services\ShortenerDoctrineRepository
+
+    GuzzleHttp\ClientInterface:
+        class: GuzzleHttp\Client
