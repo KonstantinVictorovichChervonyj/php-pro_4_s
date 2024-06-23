@@ -1,0 +1,7 @@
+<div class="profileBtn">
+    {% if app.user() %}
+        {{ app.user.email }} | <a href="{{ path('app_logout') }}" class="button">Logout</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="button">Sign In</a>
+    {% endif %}
+</div>

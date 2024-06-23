@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Url Info!{% endblock %}
+
+{% block page_name %}{{ url_code.code }}{% endblock %}
+
+{% block content %}
+
+<div class="example-wrapper">
+    <h1>Url Info for <b>{{ url_code.url }}!</b> ✅</h1>
+
+    <p style="display: flex;align-items: center;"><img src="{{ get_favicon(url_code.url) }}" style="margin-right: 5px" alt="ico">{{ url_code.code }} - {{ url_code.url }}</p>
+    <p>Переходів - {{ url_code.count }}</p>
+</div>
+{% endblock %}

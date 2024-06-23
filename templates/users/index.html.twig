@@ -2,19 +2,17 @@
 
 {% block title %}Hello UsersController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block page_name %}Users{% endblock %}
+
+{% block content %}
 
 <div class="example-wrapper">
-    <h1>{{ controller_name }}! ✅</h1>
+    <h1 style="font-size: 50px;">{{ controller_name }}! ✅</h1>
 
-    Users List:
-    <ul>
+    <h2>Users List:</h2>
+    <ul style="list-style: none;padding: 0;">
         {% for user in users %}
-            <li> {{ user.login }} </li>
+            <li>{{ user.id }} - <a href="{{ path('app_users_user_info', { 'id' : user.id }) }}" style="color: dimgrey;text-decoration: none;font-size: 20px;">{{ user.login }}</a></li>
         {% endfor %}
     </ul>
 </div>

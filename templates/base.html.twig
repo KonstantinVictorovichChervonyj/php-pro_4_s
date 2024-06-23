@@ -12,6 +12,26 @@
         {% endblock %}
     </head>
     <body>
+        <header style="display: flex;justify-content: space-between;align-items: center;border-radius: 10px 100px / 60px;background: darkgrey;margin: 0 20px 10px 20px;">{% block header %}<a href="/"><img src="{{ asset('symfony_white_01.png') }}" style="margin: 0 0 0 10px;height: 50px;" alt="logo"></a>{% endblock %}<div>{{ include('auth/login_button.html.twig') }}</div></header>
+        <div class="container" style="display: flex;">
+            <div class="menu" style="border-radius: 10px 100px / 60px;margin: 0 20px; background: darkgrey;">
+                <ul style="list-style: none; padding: 0 10px;">
+                    {% for item in main_menu() %}
+                        <li><a href="{{ item.path }}" style="color: dimgrey;text-decoration: none;font-size: 20px;">{{ item.label }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% block sidebar %}{% endblock %}
+            </div>
+            <div class="content" style="margin: 0 0 50px 50px;">
+                <section id="breadcrumbs" style="margin: 10px 0 0 0;border-radius: 10px 100px / 60px;background: darkgrey; padding: 2px 15px;color: black;font-size: 20px;">
+                    <a href="{{ path('app_main') }}" style="text-decoration: none;color: dimgrey;">Головна</a>
+                    {% if app.current_route != 'app_main' %}
+                        > {% block page_name %}{% endblock %}
+                    {% endif %}
+                </section>
+                <section id="content" style="border-radius: 10px 100px / 60px;background: darkgrey; padding: 10px 15px; margin: 20px 0 0 0;">{% block content %}{% endblock %}</section>
+            </div>
+        </div>
         {% block body %}{% endblock %}
     </body>
 </html>

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/users', name: 'app_users')]
+#[Route('/users', name: 'app_users_')]
 class UsersController extends AbstractController
 {
     #[Route('/', name: 'users_list', methods: ['GET'])]

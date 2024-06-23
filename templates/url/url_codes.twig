@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Urls List!{% endblock %}
+
+{% block page_name %}Urls{% endblock %}
+
+{% block content %}
+
+<div class="example-wrapper">
+    <h1>Urls List ✅</h1>
+    <div class="newUrl">
+        <form action="{{ path('short_encode') }}" method="post">
+            <label>
+                Додати скорочення
+                <input type="text" name="url" placeholder="some url" required>
+            </label>
+            <button type="submit">Додати</button>
+        </form>
+    </div>
+    {% for url_code in url_codes %}
+        <p style="display: flex;align-items: center;">
+            <img src="{{ get_favicon(url_code.url) }}" style="margin-right: 5px" alt="ico">
+            <a style="color: dimgrey;" href="{{ path('short_code_stat', { 'code' : url_code.code }) }}">{{ url_code.code }} ></a>
+            <a href="{{ path('short_redirect', { 'code' : url_code.code }) }}" target="_blank">{{ url_code.url }}</a>
+        </p>
+        <p>Переходів - {{ url_code.count }}</p>
+    {% endfor %}
+</div>
+{% endblock %}
